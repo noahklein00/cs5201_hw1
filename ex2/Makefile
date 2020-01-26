@@ -17,11 +17,11 @@
 CXX = /usr/bin/g++
 FLAGS = -W -Wall -g -pedantic-errors
 OBJECTS = driver.o\
-		  parser.o\
-		  scanner.o\
-		  signal.o\
-		  token.o\
-		  tokenlist.o
+          parser.o\
+          scanner.o\
+          signal.o\
+          token.o\
+          tokenlist.o
 
 .SUFFIXES: .cpp
 
@@ -54,38 +54,38 @@ driver.o: driver.cpp\
 	g++ -c driver.cpp
 	
 parser.o: parser.cpp\
-		  parser.h\
-		  tokenlist.h\
-		  token.h\
-		  enTokens.h\
-		  Amatrix.h\
-		  Avector.h\
-		  signal.h
+          parser.h\
+          tokenlist.h\
+          token.h\
+          enTokens.h\
+          Amatrix.h\
+          Avector.h\
+          signal.h
 	g++ -c parser.cpp
 	
 scanner.o: scanner.cpp\
-		   scanner.h\
-		   enChar.h\
-		   tokenlist.h\
-		   token.h\
-		   enTokens.h\
-		   signal.h
+           scanner.h\
+           enChar.h\
+           tokenlist.h\
+           token.h\
+           enTokens.h\
+           signal.h
 	g++ -c scanner.cpp
 	
 signal.o: signal.cpp\
-		  signal.h
+          signal.h
 	g++ -c signal.cpp
 	
 token.o: token.cpp\
-		 token.h\
-		 enTokens.h
+         token.h\
+         enTokens.h
 	g++ -c token.cpp
 	
 tokenlist.o: tokenlist.cpp\
-			 tokenlist.h\
-			 token.h\
-			 enTokens.h\
-			 signal.h
+             tokenlist.h\
+             token.h\
+             enTokens.h\
+             signal.h
 	g++ -c tokenlist.cpp
 
 
