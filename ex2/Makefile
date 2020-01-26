@@ -18,8 +18,8 @@ CXX = /usr/bin/g++
 FLAGS = -W -Wall -g -pedantic-errors
 OBJECTS = driver.o\
 		  parser.o\
-          scanner.o\
-          signal.o\
+		  scanner.o\
+		  signal.o\
 		  token.o\
 		  tokenlist.o
 
@@ -42,15 +42,15 @@ clean:
 	
 # Dependency lists for the various source files
 driver.o: driver.cpp\
-		  signal.h\
-		  parser.h\
-		  tokenlist.h\
-		  token.h\
-		  enTokens.h\
-		  Amatrix.h\
-		  Avector.h\
-		  scanner.h\
-		  enChar.h
+          signal.h\
+          parser.h\
+          tokenlist.h\
+          token.h\
+          enTokens.h\
+          Amatrix.h\
+          Avector.h\
+          scanner.h\
+          enChar.h
 	g++ -c driver.cpp
 	
 parser.o: parser.cpp\
