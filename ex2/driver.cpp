@@ -7,7 +7,7 @@
 //  File name:  driver.cpp                               *
 //  Function:   driver program testing the parser        *
 //                                                       *
-//********************************************************                 
+//********************************************************
 
 #define SUCCESSFUL 0
 
@@ -26,7 +26,7 @@ using std::endl;
 
 char str_token_type[30][10];    // the array is global
 
-// The following part declare an array of record to keep a single character 
+// The following part declare an array of record to keep a single character
 //   lexeme and the type of lexeme useful for the parser
 
 const int CTL_CHAR_OFFSET = 32;
@@ -37,7 +37,7 @@ lexeme_type_t  lexeme_type[] =
  // all the characters appear in the ascii code value ascedent order.
  // as the first 32 ascii chacaters are controlled characters, they are not
  // included. to access an appropriate record of a character, we can use the ascii
- // value of the character - 32 as the index to this array. 
+ // value of the character - 32 as the index to this array.
    { ' ', U },{'!',U},{'"',U},{'#',U},
    { '$', SCANEOF },{'%',U},{'&',U},{ '\'',U},
    { '(', LPAREN },
@@ -48,7 +48,7 @@ lexeme_type_t  lexeme_type[] =
    { '-', SUBOP },{'.',U},
    { '/', DIVOP },
    { '0', U }, {'1',U}, {'2',U}, {'3',U}, {'4',U},
-   { '5', U }, {'6',U}, {'7',U}, {'8',U}, {'9',U}, 
+   { '5', U }, {'6',U}, {'7',U}, {'8',U}, {'9',U},
    { ':', U },
    { ';', SEMICOL },
    { '<', LESS },
@@ -70,22 +70,22 @@ lexeme_type_t  lexeme_type[] =
 int main() {
 
   // The following lines avoid a huge switch statement
-     
-    char tt[10];
+
+    std::string tt;
     int c;
     std::ifstream token_file( "tokens_file.dat" );
-    
-    c = 0;   // the starting value of enTokens type is set to 0 
+
+    c = 0;   // the starting value of enTokens type is set to 0
     while ( c < 30 && token_file >> tt  )
     {
-       std::strcpy( str_token_type[c++], tt );
-    } 
+       std::strcpy( str_token_type[c++], tt.c_str() );
+    }
 
     std::list<std::string>  program_list;
     std::list<std::string>::const_iterator itrTest;
     CScanner                scanner;
     Parser		    parsing;
-    
+
     //program_list.push_back(std::string("a=b+3.14156 - 7.8182;$"));
     //program_list.push_back(std::string("a=c*b-d; $"));
     //program_list.push_back(std::string("a=c+b$ "));
@@ -116,19 +116,19 @@ int main() {
     program_list.push_back(std::string("b=[1.0,2.1;3.5,4.6]-[1.0,2.1];$"));
     program_list.push_back(std::string("b=[1.0;3.5]-[1.0,2.1;3.5,4.6];$"));
     program_list.push_back(std::string("b=[1.0,2.1;3.5,4.6]+[1.0,2.1;3.5,4.6];$"));
-    program_list.push_back(std::string("b=[1.0;3.5]*[1.0,2.1;3.5,4.6];$")); 
+    program_list.push_back(std::string("b=[1.0;3.5]*[1.0,2.1;3.5,4.6];$"));
     program_list.push_back(std::string("b=[1.0;3.5]*[1.0,2.1];$"));
-    
+
     itrTest = program_list.begin();
     while(itrTest != program_list.end())
     {
        try
-       { 
+       {
           cout << *itrTest << endl;
           scanner.generate_token_list(*itrTest);
 
        // now scanner should contain a list of lexemes ready for parsing
-       
+
          CToken_List ajb_temp=scanner.get_token_list();
 	      parsing.parse(ajb_temp);
 	      cout << "\nA New Program\n\n";
@@ -139,6 +139,6 @@ int main() {
        }
        itrTest++;
      }
-    
+
     return (SUCCESSFUL);
 }
